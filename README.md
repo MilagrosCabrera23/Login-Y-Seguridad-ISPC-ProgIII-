@@ -2,16 +2,20 @@
 
 API backend con Django REST Framework + JWT + PostgreSQL.
 
+Incluye soporte CORS con django-cors-headers para integración con frontend Angular.
+
 ## Requisitos
 
-- Python 3.10+
+- Python 3.10+ (o superior)
 - PostgreSQL
 - Virtual environment (recomendado)
+- django-cors-headers (se instala automáticamente con requirements.txt)
 
 ## Instalación rápida
 
 ```powershell
 cd d:\ISPC\ProgramacionIII\ISPC-ProgIII
+python -m venv .venv
 .\.venv\Scripts\Activate.ps1
 pip install -r requirements.txt
 ```
@@ -118,6 +122,7 @@ python manage.py test
 
 - La contraseña se guarda como hash seguro (PBKDF2 por defecto).
 - La app también usa `django-encrypted-model-fields` para campos sensibles.
+- El backend permite solicitudes CORS desde Angular (`localhost:4200`) usando django-cors-headers.
 
 ## Estructura de carpetas
 
