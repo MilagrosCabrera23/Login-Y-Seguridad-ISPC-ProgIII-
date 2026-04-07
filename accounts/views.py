@@ -4,13 +4,13 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework.permissions import AllowAny
 from django.contrib.auth import authenticate
-from django.contrib.auth.models import User,OTP
+from .models import OTP 
+from django.contrib.auth.models import User
 from .serializers import PasswordResetRequestSerializer, PasswordResetConfirmSerializer
 from rest_framework_simplejwt.tokens import RefreshToken
 from rest_framework.permissions import IsAuthenticated
 from .serializers import RegisterSerializer, UserSerializer
 
-# Create your views here.
 
 class RegisterView(generics.CreateAPIView):
     queryset = User.objects.all()
@@ -48,7 +48,7 @@ class PasswordResetRequestView(APIView):
             
             otp_instance = OTP.generate_otp(user)
             
-            print(f"--- PASSWORD RESET OTP for {user.username}: {otp_instance.code} ---")
+            print(f"--- PASSWORD RESET OTP for {user.username}: {otp_instance.otp_code} ---")
             
             return Response(
                 {"message": "An OTP has been sent (check backend console)."}, 
